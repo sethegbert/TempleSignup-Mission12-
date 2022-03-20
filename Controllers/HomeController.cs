@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,17 @@ using TempleSignup_Mission12_.Models;
 
 namespace TempleSignup_Mission12_.Controllers
 {
+ 
+    // We reference the HomeController inherited from Controller so the program knows where to look
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        // Set up a reference to the AppointmentContext Model so the program can get and set info from it
+        private AppointmentContext appointments { get; set; }
+        
+        public HomeController(AppointmentContext blah)
         {
-            _logger = logger;
+            appointments = blah;
         }
 
         public IActionResult Index()
@@ -23,15 +28,11 @@ namespace TempleSignup_Mission12_.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        // This will return the SignUp page when we click the button to take us there (using asp controller)
+
+        public IActionResult SignUp()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
