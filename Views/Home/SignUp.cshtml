@@ -3,42 +3,59 @@
 }
 @model List<TempleSignup_Mission12_.Models.Appointment>
 
-<h1>
-    this is the sign up page
-</h1>
+<div class="text-center">
+    <h1 style="margin:15px;">Sign Up For an Appointment:</h1>
+</div>
+
 
 
 
 
 @for (int i = 0; i < 89; i++)
 {
-    <p>@ViewBag.Days[i]</p>
-
-    <div class="row">
-        <div class="col">
-            <p>Times Booked:</p>
-        </div>
-        <div class="col">
-            <p>Slots Available:</p>
-        </div>
+<div class="card m-4 p-1">
+    <div class="card-header">
+        <p>@ViewBag.Days[i]</p>
     </div>
     
-    @foreach (var x in Model)
-    {
-        @if (x.Date == ViewBag.Days[i])
-        {
-            <div class="row">
-                <div class="col">
-                    <p>@x.Time.TimeSlot</p>
-                </div>
-                <div class="col">
-                    <p>@x.Slots</p>
-                </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <p>Times Booked:</p>
             </div>
-            
-        }
-        
+            <div class="col">
+                <p>Slots Available:</p>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-success">Sign Up</button>
+            </div>
+        </div>
 
-    }
-    <br />
+        @foreach (var x in Model)
+        {
+            @if (x.Date == ViewBag.Days[i])
+            {
+                <div class="row">
+                    <div class="col">
+                        <p>@x.Time.TimeSlot</p>
+                    </div>
+                    <div class="col">
+                        <p>@x.Slots</p>
+                    </div>
+                    <div class="col-3">
+                        
+                    </div>
+                </div>
+
+            }
+
+
+        }
+    </div>
+    
+
+    
+    
+</div>
+    
 }
