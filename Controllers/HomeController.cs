@@ -22,9 +22,11 @@ namespace TempleSignup_Mission12_.Controllers
         {
             appointments = blah;
         }
+        
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
@@ -32,7 +34,16 @@ namespace TempleSignup_Mission12_.Controllers
 
         public IActionResult SignUp()
         {
-            return View();
+
+            var Appointments = appointments.Appointments;
+            
+            List<String> futureDays = new List<String>();
+            for (int i = 0; i < 89; i++)
+            {
+                futureDays.Add(DateTime.Now.AddDays(i).ToString("yyyy-MM-dd"));
+            }
+            ViewBag.Days = futureDays;
+            return View(Appointments);
         }
     }
 }
