@@ -2,7 +2,7 @@
 
 namespace TempleSignup_Mission12_.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -127,17 +127,17 @@ namespace TempleSignup_Mission12_.Migrations
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "AppointmentId", "Date", "Location", "Slots", "TimeId" },
-                values: new object[] { 1, "3/21/2022", "Layton Temple Visitors Center", 10, 1 });
+                values: new object[] { 1, "03/24/2022", "Layton Temple Visitors Center", 10, 1 });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "AppointmentId", "Date", "Location", "Slots", "TimeId" },
-                values: new object[] { 2, "3/22/2022", "Layton Temple Visitors Center", 10, 2 });
+                values: new object[] { 2, "03/25/2022", "Layton Temple Visitors Center", 10, 2 });
 
             migrationBuilder.InsertData(
                 table: "Appointments",
                 columns: new[] { "AppointmentId", "Date", "Location", "Slots", "TimeId" },
-                values: new object[] { 3, "3/22/2022", "Layton Temple Visitors Center", 20, 3 });
+                values: new object[] { 3, "03/26/2022", "Layton Temple Visitors Center", 20, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_TimeId",

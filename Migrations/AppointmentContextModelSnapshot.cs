@@ -45,7 +45,7 @@ namespace TempleSignup_Mission12_.Migrations
                         new
                         {
                             AppointmentId = 1,
-                            Date = "3/21/2022",
+                            Date = "03/24/2022",
                             Location = "Layton Temple Visitors Center",
                             Slots = 10,
                             TimeId = 1
@@ -53,7 +53,7 @@ namespace TempleSignup_Mission12_.Migrations
                         new
                         {
                             AppointmentId = 2,
-                            Date = "3/22/2022",
+                            Date = "03/25/2022",
                             Location = "Layton Temple Visitors Center",
                             Slots = 10,
                             TimeId = 2
@@ -61,7 +61,7 @@ namespace TempleSignup_Mission12_.Migrations
                         new
                         {
                             AppointmentId = 3,
-                            Date = "3/22/2022",
+                            Date = "03/26/2022",
                             Location = "Layton Temple Visitors Center",
                             Slots = 20,
                             TimeId = 3
