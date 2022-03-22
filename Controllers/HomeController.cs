@@ -35,12 +35,14 @@ namespace TempleSignup_Mission12_.Controllers
         public IActionResult SignUp()
         {
 
-            var Appointments = appointments.Appointments;
+            var Appointments = appointments.Appointments.Include(x => x.Time).ToList();
+            // var Times = appointments.Times.Include(x => x.TimeId).ToList();
             
             List<String> futureDays = new List<String>();
+            
             for (int i = 0; i < 89; i++)
             {
-                futureDays.Add(DateTime.Now.AddDays(i).ToString("yyyy-MM-dd"));
+                futureDays.Add(DateTime.Now.AddDays(i).ToString("MM/dd/yyyy"));
             }
             ViewBag.Days = futureDays;
             return View(Appointments);
