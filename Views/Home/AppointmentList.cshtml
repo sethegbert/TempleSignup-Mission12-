@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "View Appointments";
+}
+
+@model List<SignUp>
+
+<h1>View Appointments</h1>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="font-weight-bold">
+        <tr>
+            <td>Date</td>
+            <td>Name of Group</td>
+            <td>Size of Group</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Time</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Appointment.Date</td>
+                <td>@x.GroupName</td>
+                <td>@x.GroupSize</td>
+                <td>@x.Email</td>
+                <td>@x.Phone</td>
+                <td>@x.Appointment.Time</td>
+
+                <td><a asp-controller="Home" asp-action="Edit" asp-route-movieid="@x.SignUpId">Edit</a></td>
+                <td><a asp-controller="Home" asp-action="Delete" asp-route-movieid="@x.SignUpId">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
