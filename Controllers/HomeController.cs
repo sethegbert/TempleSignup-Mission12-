@@ -47,5 +47,55 @@ namespace TempleSignup_Mission12_.Controllers
             ViewBag.Days = futureDays;
             return View(Appointments);
         }
+
+
+        //Takes us to the Appointment page
+        [HttpGet]
+        public IActionResult AppointmentList()
+        {
+            var app = appointments.SignUps
+                .OrderBy(x => x.Appointment.Date)
+                .ToList();
+
+            return View(app);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int signupid)
+        {
+            ViewBag.SignUp = appointments.Appointments.ToList();
+
+            var appointment = appointments.SignUps.Single(x => x.SignUpId == signupid);
+
+            return View("ApppointmentForm", appointment);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(SignUp su)
+        {
+            appointments.Update(su);
+            appointments.SaveChanges();
+
+            return RedirectToAction("AppointmentList");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int signupid)
+        {
+            ViewBag.SignUp = appointments.Appointments.ToList();
+
+            var appointment = appointments.SignUps.Single(x => x.SignUpId == signupid);
+
+            return View(appointment);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(SignUp su)
+        {
+            appointments.SignUps.Remove(su);
+            appointments.SaveChanges();
+
+            return RedirectToAction("AppointmentList");
+        }
     }
 }
