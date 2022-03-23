@@ -97,5 +97,33 @@ namespace TempleSignup_Mission12_.Controllers
 
             return RedirectToAction("AppointmentList");
         }
+
+        [HttpGet]
+        public IActionResult GroupInfo(int signupid)
+        {
+            ViewBag.SignUp = appointments.Appointments.ToList();
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GroupInfo(SignUp su)
+        {
+            ViewBag.SignUp = appointments.Appointments.ToList();
+
+            if (ModelState.IsValid)
+            {
+                appointments.Add(su);
+                appointments.SaveChanges();
+            }
+            else
+            {
+                ViewBag.SignUp = appointments.Appointments.ToList();
+
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
