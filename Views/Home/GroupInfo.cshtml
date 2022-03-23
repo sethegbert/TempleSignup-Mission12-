@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Group Information";
+}
+
+@model SignUp
+
+<h2>Thank you for Signing Up!</h2>
+
+<br />
+
+<h3>Please fill out the folling information:</h3>
+
+<form method="post">
+
+    <div asp-validation-summary="All"></div>
+
+    <label asp-for="Appointment.Time">Appointment Time: @Model.Appointment.Date at @Model.Appointment.Time</label>
+
+    <br />
+
+    <label asp-for="GroupName">Group Name:</label>
+    <input asp-for="GroupName" />
+
+    <br />
+
+    <label asp-for="GroupSize">Group Size:</label>
+    <input asp-for="GroupSize" />
+
+    <br />
+
+    <label asp-for="Email">Email Address:</label>
+    <input asp-for="Email" />
+
+    <br />
+
+    <label asp-for="Phone">Phone Number:</label>
+    <input asp-for="Phone"/>
+
+    <br />
+
+    <button type="submit">Submit</button>
+
+
+</form>
+
