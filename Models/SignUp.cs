@@ -14,7 +14,7 @@ namespace TempleSignup_Mission12_.Models
         [Required]
         public int SignUpId { get; set; }
         [Required(ErrorMessage = "Please enter a group size")]
-        [Range(0, 15)]
+        [Range(1, 15)]
         public int GroupSize { get; set; }
         [Required(ErrorMessage = "Please enter a group name")]
         public string GroupName { get; set; }
