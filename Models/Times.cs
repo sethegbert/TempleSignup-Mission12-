@@ -8,6 +8,7 @@ namespace TempleSignup_Mission12_.Models
 {
     public class Times
     {
+        //This keeps track of times
         [Key]
         [Required]
         public int TimeId { get; set; }

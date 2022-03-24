@@ -28,10 +28,12 @@
                 <td>@x.GroupSize</td>
                 <td>@x.Email</td>
                 <td>@x.Phone</td>
-                <td>@x.Appointment.Time</td>
-
-                <td><a asp-controller="Home" asp-action="Edit" asp-route-movieid="@x.SignUpId">Edit</a></td>
-                <td><a asp-controller="Home" asp-action="Delete" asp-route-movieid="@x.SignUpId">Delete</a></td>
+                <td>@x.Appointment.Time.TimeSlot</td>
+                
+                <!--Edit and Delete Buttons-->
+                <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.SignUpId">Edit</a></td>
+                <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.SignUpId">Delete</a></td>
+                
             </tr>
         }
     </tbody>

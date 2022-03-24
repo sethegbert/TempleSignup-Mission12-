@@ -4,17 +4,16 @@
 
 @model SignUp
 
-<h2>Thank you for Signing Up!</h2>
+<h3>Thank you for Signing Up!</h3>
 
 <br />
 
-<h3>Please fill out the folling information:</h3>
+<h5>Please fill out the following information:</h5>
 
-<form method="post">
+
+<form method="post" asp-action="GroupInfo">
 
     <div asp-validation-summary="All"></div>
-
-    <label asp-for="Appointment.Time">Appointment Time: @Model.Appointment.Date at @Model.Appointment.Time</label>
 
     <br />
 
@@ -34,11 +33,25 @@
     <br />
 
     <label asp-for="Phone">Phone Number:</label>
-    <input asp-for="Phone"/>
+    <input asp-for="Phone" />
 
     <br />
 
-    <button type="submit">Submit</button>
+    <input type="hidden" asp-for="AppointmentId" value="@ViewBag.App" />
+
+    <!--These buttons will change depending on if you are updating or deleting data-->
+
+    @if (Model == null)
+    {
+        <button class="btn btn-primary m-2" type="submit" asp-action="GroupInfo">Submit</button>
+    }
+
+    @if (Model != null)
+    {
+        <input type="hidden" asp-for="SignUpId" />
+        <button class="btn btn-primary m-2" type="submit" asp-action="Edit">Update</button>
+    }
+
 
 
 </form>

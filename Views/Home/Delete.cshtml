@@ -4,11 +4,13 @@
 
 @model SignUp
 
-<h2>Confirm Deletion</h2>
-<h3>Are you sure you want to delete the appointment for @Model.Appointment.Date at @Model.Appointment.Time? </h3>
+<h2 class="mb-3">Confirm Deletion</h2>
+<h4>Are you sure you want to delete the appointment for @Model.Appointment.Date from @Model.Appointment.Time.TimeSlot? </h4>
+
+<!--This form will pass in the SignUpId and delete the associated record-->
 
 <form method="post" asp-action="Delete">
-    <button type="submit">Delete</button>
+    <button class="btn btn-danger" type="submit">Delete</button>
     <a asp-controller="Home" asp-action="AppointmentList" class="btn btn-primary">Cancel</a>
 
     <input type="hidden" asp-for="SignUpId" />

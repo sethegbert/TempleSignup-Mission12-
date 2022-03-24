@@ -8,7 +8,7 @@ using TempleSignup_Mission12_.Models;
 namespace TempleSignup_Mission12_.Migrations
 {
     [DbContext(typeof(AppointmentContext))]
-    [Migration("20220322165756_initial")]
+    [Migration("20220324040019_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
