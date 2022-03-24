@@ -117,8 +117,13 @@ namespace TempleSignup_Mission12_.Controllers
         public IActionResult GroupInfo(int appId)
         {
             //int timeId = Convert.ToInt32(RouteData.Values["id"]);
-            ViewBag.App = appId;
-            
+            var app = appointments.Appointments.Single(x => x.AppointmentId == appId);
+
+            var signup = new SignUp();
+            signup.Appointment = app;
+            signup.AppointmentId = appId;
+
+            // ViewBag.App = appId;            
 
             return View();
         }
@@ -131,12 +136,15 @@ namespace TempleSignup_Mission12_.Controllers
 
             if (ModelState.IsValid)
             {
+
                 appointments.Add(su);
                 appointments.SaveChanges();
             }
             else
             {
                 ViewBag.SignUp = appointments.Appointments.ToList();
+
+                ViewBag.App = su.AppointmentId;
 
                 return View();
             }
@@ -184,8 +192,5 @@ namespace TempleSignup_Mission12_.Controllers
 
             return View("GroupInfo");
         }
-
-
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,11 +13,12 @@ namespace TempleSignup_Mission12_.Models
         [Key]
         [Required]
         public int SignUpId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a group size")]
+        [Range(0, 15)]
         public int GroupSize { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter a group name")]
         public string GroupName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Please enter an email")]
         public string Email { get; set; }
         public string Phone { get; set; }
         public int AppointmentId { get; set; }
