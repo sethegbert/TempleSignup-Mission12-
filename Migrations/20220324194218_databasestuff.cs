@@ -2,7 +2,7 @@
 
 namespace TempleSignup_Mission12_.Migrations
 {
-    public partial class initial : Migration
+    public partial class databasestuff : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

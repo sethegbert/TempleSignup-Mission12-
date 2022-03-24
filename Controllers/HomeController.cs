@@ -36,7 +36,7 @@ namespace TempleSignup_Mission12_.Controllers
         public IActionResult SignUp()
         {
 
-            var Appointments = appointments.Appointments.Include(x => x.Time).ToList();
+            var Appointments = appointments.Appointments.Include(x => x.Time).OrderBy(x => x.Time.TimeSlot).ToList();
             // var Times = appointments.Times.Include(x => x.TimeId).ToList();
             
             List<String> futureDays = new List<String>();
@@ -111,7 +111,6 @@ namespace TempleSignup_Mission12_.Controllers
             return RedirectToAction("AppointmentList");
         }
 
-
         //This will show the form to add a group to an appointment
         [HttpGet]
         public IActionResult GroupInfo(int appId)
@@ -158,7 +157,7 @@ namespace TempleSignup_Mission12_.Controllers
             string date = RouteData.Values["id"].ToString();
             string newDate = date.Replace("%2F", "/");
             
-            var currentApp = appointments.Appointments.Where(x => x.Date == newDate).Include(blah => blah.Time).ToList();
+            var currentApp = appointments.Appointments.Where(x => x.Date == newDate).Include(blah => blah.Time).OrderBy(x => x.Time.TimeSlot).ToList();
             
 
             List<Times> takenTimes = new List<Times>();
