@@ -21,6 +21,7 @@ namespace TempleSignup_Mission12_.Models
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            //This loads the database with all the time slots
             mb.Entity<Times>().HasData(
                 new Times { TimeId = 1, TimeSlot = "8:00am-9:00am" },
                 new Times { TimeId = 2, TimeSlot = "9:00am-10:00am" },
@@ -36,6 +37,7 @@ namespace TempleSignup_Mission12_.Models
                 new Times { TimeId = 12, TimeSlot = "7:00pm-8:00pm" }
                 );
 
+            //This loads a few appointments to start out
             mb.Entity<Appointment>().HasData(
                 new Appointment
                 {

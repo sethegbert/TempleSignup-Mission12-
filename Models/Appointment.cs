@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TempleSignup_Mission12_.Models
 {
+    //This Model will keep track of days and will connect with a Time Model
     public class Appointment
     {
 

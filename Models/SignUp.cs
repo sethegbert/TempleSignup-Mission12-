@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TempleSignup_Mission12_.Models
 {
+    //This keeps tracks of groups and assigns them to specific days
     public class SignUp
     {
         [Key]

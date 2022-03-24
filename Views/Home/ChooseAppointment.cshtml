@@ -1,0 +1,43 @@
+﻿@{
+}
+@model List<Appointment>
+
+<h3>Choose Appointment for @ViewBag.Date</h3>
+
+<!--Display times that have been taken-->
+<h5>Taken:</h5>
+@foreach (var x in Model)
+{
+    <div class="row m-3">
+        <div class="col">
+            <p>@x.Time.TimeSlot</p>
+        </div>
+        <div class="col"></div>
+    </div>
+    
+    
+}
+
+<!--Display times that are available-->
+<h5>Available:</h5>
+@foreach (var y in ViewBag.Times)
+{
+    <div class="row m-3">
+        <div class="col">
+            <p>@y.TimeSlot</p>
+        </div>
+        <div class="col">
+            <form method="post">
+                <input type="hidden" name="timeId" id="timeId" value="@y.TimeId" />
+                <input type="hidden" name="date" id="date" value="@ViewBag.Date" />
+                <input type="hidden" name="appointmentId" id="appointmentId" value="" />
+                <button class="btn btn-primary" type="submit" asp-action="CreateAppointment">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    
+}
+
+
+
+

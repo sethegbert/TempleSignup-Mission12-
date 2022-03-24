@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using TempleSignup_Mission12_.Models;
 
@@ -54,22 +55,29 @@ namespace TempleSignup_Mission12_.Controllers
         public IActionResult AppointmentList()
         {
             var app = appointments.SignUps
+                .Include(x => x.Appointment)
+                .ThenInclude(x => x.Time)
                 .OrderBy(x => x.Appointment.Date)
                 .ToList();
 
             return View(app);
         }
 
+        //This will allow the user to be rerouted to the GroupInfo form and make any desired changes
+
         [HttpGet]
-        public IActionResult Edit(int signupid)
+        public IActionResult Edit()
         {
             ViewBag.SignUp = appointments.Appointments.ToList();
+            //This grabs the signupId from the RouteData
+            var signupId = Convert.ToInt32(RouteData.Values["id"]);
+            var signup = appointments.SignUps.Single(x => x.SignUpId == signupId);
+            ViewBag.App = signup.AppointmentId;
 
-            var appointment = appointments.SignUps.Single(x => x.SignUpId == signupid);
-
-            return View("ApppointmentForm", appointment);
+            return View("GroupInfo", signup);
         }
 
+        //This is what will update an existing record when the user edits
         [HttpPost]
         public IActionResult Edit(SignUp su)
         {
@@ -79,16 +87,21 @@ namespace TempleSignup_Mission12_.Controllers
             return RedirectToAction("AppointmentList");
         }
 
+
+        //This will grab the signupid from RouteData and redirect to confirm delete page
         [HttpGet]
-        public IActionResult Delete(int signupid)
+        public IActionResult Delete()
         {
+            var signupid = Convert.ToInt32(RouteData.Values["id"]);
+
             ViewBag.SignUp = appointments.Appointments.ToList();
 
-            var appointment = appointments.SignUps.Single(x => x.SignUpId == signupid);
+            var appointment = appointments.SignUps.Include(x => x.Appointment).ThenInclude(x => x.Time).Single(x => x.SignUpId == signupid);
 
             return View(appointment);
         }
 
+        //This will delete the record
         [HttpPost]
         public IActionResult Delete(SignUp su)
         {
@@ -98,14 +111,19 @@ namespace TempleSignup_Mission12_.Controllers
             return RedirectToAction("AppointmentList");
         }
 
+
+        //This will show the form to add a group to an appointment
         [HttpGet]
-        public IActionResult GroupInfo(int signupid)
+        public IActionResult GroupInfo(int appId)
         {
-            ViewBag.SignUp = appointments.Appointments.ToList();
+            //int timeId = Convert.ToInt32(RouteData.Values["id"]);
+            ViewBag.App = appId;
+            
 
             return View();
         }
 
+        //This is what will make a new SignUp record based off the form
         [HttpPost]
         public IActionResult GroupInfo(SignUp su)
         {
@@ -125,5 +143,49 @@ namespace TempleSignup_Mission12_.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //This shows appointments that are available 
+        public IActionResult ChooseAppointment()
+        {
+            string date = RouteData.Values["id"].ToString();
+            string newDate = date.Replace("%2F", "/");
+            
+            var currentApp = appointments.Appointments.Where(x => x.Date == newDate).Include(blah => blah.Time).ToList();
+            
+
+            List<Times> takenTimes = new List<Times>();
+            foreach (var x in currentApp)
+            {
+                takenTimes.Add(x.Time);
+            }
+
+            //Make a list that has times that have not been taken
+            var freeTimes = appointments.Times.ToList().Except(takenTimes);
+            
+
+            ViewBag.Times = freeTimes;
+
+            ViewBag.Date = newDate;
+
+            return View(currentApp);
+        }
+
+        //This will create an Appointment record when the user selects a time. This needs to be created before a SignUp record is created.
+        [HttpPost]
+        public IActionResult CreateAppointment(int timeId, string date)
+        {
+            appointments.Add(new Appointment { Date=date, Location="Layton Temple Visitors Center", Slots=10, TimeId=timeId });
+            appointments.SaveChanges();
+            var appointmentId = appointments.Appointments.Where(x => x.Date == date).Single(x => x.TimeId == timeId);
+
+            int AppId = appointmentId.AppointmentId;
+
+            ViewBag.App = AppId;
+
+            return View("GroupInfo");
+        }
+
+
+
     }
 }
