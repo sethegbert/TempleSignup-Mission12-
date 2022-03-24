@@ -22,6 +22,5 @@ namespace TempleSignup_Mission12_.Models
         public int TimeId { get; set; }
         public Times Time { get; set; }
 
-
     }
 }

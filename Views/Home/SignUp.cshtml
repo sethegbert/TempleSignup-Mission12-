@@ -23,12 +23,12 @@
             <div class="col">
                 <p>Times Booked:</p>
             </div>
-            <div class="col">
+            @*<div class="col">
                 <p>Slots Available:</p>
-            </div>
+            </div>*@
             <!--This button will create an Appointment for that day and then redirect to the form that will allow the user to enter information-->
             <div class="col-3">
-                <a class="btn btn-primary" asp-controller="Home" asp-action="ChooseAppointment" asp-route-id="@ViewBag.Days[i]">Sign Up</a>
+                <a class="btn btn-primary" asp-controller="Home" asp-action="ChooseAppointment" asp-route-id="@ViewBag.Days[i]">See Appointment Times For @ViewBag.Days[i]</a>
             </div>
         </div>
 
@@ -40,9 +40,9 @@
                     <div class="col">
                         <p>@x.Time.TimeSlot</p>
                     </div>
-                    <div class="col">
+                    @*<div class="col">
                         <p>@x.Slots</p>
-                    </div>
+                    </div>*@
                     <div class="col-3">
                         
                     </div>
